@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -17,14 +18,14 @@ public class UserEntity {
     private String name;
     @Column(unique = true)
     private String email;
-    @JsonIgnore
     private String password;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roles;
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
 
     public UserEntity() {
     }
