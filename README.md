@@ -7,7 +7,7 @@ A mesma foi projetada utilizando o padrão Oauth2 como método de autenticação
 Toda a aplicação é disponibilizada em um arquivo compactado `maida-bank-api-0.0.1-SNAPSHOT.jar`.
 
 ## Requerimentos
-- JDK11 e Maven instalados
+- JDK11 e Maven
 
 ## Especificações
 - Spring Boot v2.2.5.RELEASE (Web, Security and Data)
