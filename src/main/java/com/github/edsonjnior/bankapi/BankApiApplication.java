@@ -17,4 +17,5 @@ public class BankApiApplication {
 	public PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
+
 }
