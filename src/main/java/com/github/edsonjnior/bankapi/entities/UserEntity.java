@@ -15,7 +15,7 @@ public class UserEntity {
     private Long id;
     private String name;
     @Column(unique = true)
-    private String email;
+    private String login;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -28,9 +28,16 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String name, String email, String password, Set<RoleEntity> roles){
+    public UserEntity(Long id, String name, String login, String password, Set<RoleEntity> roles){
+        this.id = id;
         this.name = name;
-        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
+    }
+    public UserEntity(String name, String login, String password, Set<RoleEntity> roles){
+        this.name = name;
+        this.login = login;
         this.password = password;
         this.roles = roles;
     }
