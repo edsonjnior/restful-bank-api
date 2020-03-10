@@ -2,7 +2,6 @@ package com.github.edsonjnior.bankapi.security;
 
 import com.github.edsonjnior.bankapi.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -44,7 +43,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients
                 .inMemory()
                 .withClient("myapp")
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("all")
+                .authorizedGrantTypes("password").scopes("all")
                 .refreshTokenValiditySeconds(3 * 24 * 60 * 60) // 3 days = 259200‬
                 .resourceIds(ResourceServerConfig.RESOURCE_ID)
                 .secret(passwordEncoder.encode("myappsecret"))
