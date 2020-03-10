@@ -49,8 +49,7 @@ public class BranchesController {
         branchDto.setBank(new BankDto(requestModel.getBank()));
 
         var createdBranchDto = branchService.save(branchDto);
-        var response = mapper.map(createdBranchDto, BranchRest.class);
 
-        return response;
+        return mapper.map(createdBranchDto, BranchRest.class);
     }
 }

@@ -41,9 +41,7 @@ public class AccountsController {
         var accountCreationDto = mapper.map(requestModel, AccountCreationDto.class);
         var createdAccountDto = accountsService.save(accountCreationDto, bankId, branchId);
 
-        var response = mapper.map(createdAccountDto, AccountCreationRest.class);
-
-        return response;
+        return mapper.map(createdAccountDto, AccountCreationRest.class);
     }
 
 
@@ -51,7 +49,7 @@ public class AccountsController {
     @PostMapping(path = "/accounts/{accountId}/transactions",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public TransactionRest createAccountTransaction(@PathVariable Long accountId,
-                                                          @RequestBody TransactionRequestModel requestModel) {
+                                                    @RequestBody TransactionRequestModel requestModel) {
         var mapper = new ModelMapper();
         var transactionDto = mapper.map(requestModel, TransactionDto.class);
         if (requestModel.getAccount() != null) {
@@ -59,17 +57,15 @@ public class AccountsController {
         }
 
         var createdTransactionDto = transactionService.save(transactionDto, accountId);
-        var response = mapper.map(createdTransactionDto, TransactionRest.class);
-
-        return response;
+        return mapper.map(createdTransactionDto, TransactionRest.class);
     }
 
     @ResponseBody
     @GetMapping(path = "/accounts/{accountId}/transactions",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TransactionSimpleRest> getTransactions(@PathVariable Long accountId,
-                                           @RequestParam(value = "page", defaultValue = "1") int page,
-                                           @RequestParam(value = "limit", defaultValue = "25") int limit) {
+                                                       @RequestParam(value = "page", defaultValue = "1") int page,
+                                                       @RequestParam(value = "limit", defaultValue = "25") int limit) {
         List<TransactionSimpleRest> response = new ArrayList<>();
 
         List<TransactionDto> listTransactionsDto = transactionService.findWithPagination(accountId, page, limit);
@@ -98,7 +94,6 @@ public class AccountsController {
 
         return response;
     }
-
 
 
 }

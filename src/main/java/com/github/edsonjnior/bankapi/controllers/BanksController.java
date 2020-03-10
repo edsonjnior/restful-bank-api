@@ -48,9 +48,8 @@ public class BanksController {
 
         var bankDto = mapper.map(requestModel, BankDto.class);
         var createdBankDto = bankService.save(bankDto);
-        var response = mapper.map(createdBankDto, BankRest.class);
 
-        return response;
+        return mapper.map(createdBankDto, BankRest.class);
     }
 
 
